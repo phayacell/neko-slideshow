@@ -13,10 +13,7 @@
     <div class="footer">
       <div class="tools">
         <autoplay :swiper="swiper"></autoplay>
-        <button type="button" class="button" @click="refresh">
-          <i class="refresh fa fa-refresh fa-fw"></i>
-          Refresh
-        </button>
+        <refresh @refresh="refresh"></refresh>
       </div>
       <div>
         <i class="fa fa-heart-o"></i>
@@ -28,10 +25,12 @@
 
 <script>
 import autoplay from '~/components/autoplay.vue'
+import refresh from '~/components/refresh.vue'
 
 export default {
   components: {
-    autoplay
+    autoplay,
+    refresh
   },
   created () {
     this.swiper = null
