@@ -68,22 +68,24 @@ export default {
   methods: {
     addImages (count) {
       for (let index = 0; index < count; index++) {
-        this.$axios.head('https://thecatapi.com/api/images/get?' + Math.random())
+        this.$axios.get('https://thecatapi.com/api/images/get?' + Math.random(), {responseType: 'blob'})
           .then(response => {
-            if (response.status === 200) {
-              this.images.push({url: response.request.responseURL})
+            if (response.status === 200 && response.data.size > 0) {
+              this.images.push({
+                url: URL.createObjectURL(response.data)
+              })
+              if (this.images.length > 30) {
+                URL.revokeObjectURL(this.images.shift().url)
+                this.swiper.activeIndex--
+              }
+            } else {
+              this.addImages(1)
             }
-          })
-          .catch(() => {
-            // 取得に失敗した場合、再度取得する
-            this.addImages(1)
           })
       }
     },
     init () {
-      if (this.images.length === 0) {
-        this.addImages(5)
-      }
+      this.addImages(5)
     },
     slideChange () {
       if (this.swiper.slides.length <= this.swiper.realIndex + 3) {
@@ -96,6 +98,7 @@ export default {
       }
     },
     refresh () {
+      this.images.forEach(image => { URL.revokeObjectURL(image.url) })
       this.images = []
       this.init()
     },
