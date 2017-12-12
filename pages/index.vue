@@ -12,14 +12,7 @@
     </div>
     <div class="footer">
       <div class="tools">
-        <button type="button" class="button" @click="toggleAutoplay()" v-show="!isAutoplayRunning">
-          <i class="fa fa-play fa-fw"></i>
-          Start
-        </button>
-        <button type="button" class="button" @click="toggleAutoplay()" v-show="isAutoplayRunning">
-          <i class="fa fa-stop fa-fw"></i>
-          Stop
-        </button>
+        <autoplay :swiper="swiper"></autoplay>
         <button type="button" class="button" @click="refresh">
           <i class="refresh fa fa-refresh fa-fw"></i>
           Refresh
@@ -34,7 +27,15 @@
 </template>
 
 <script>
+import autoplay from '~/components/autoplay.vue'
+
 export default {
+  components: {
+    autoplay
+  },
+  created () {
+    this.swiper = null
+  },
   data () {
     return {
       images: [],
@@ -61,8 +62,7 @@ export default {
           init: this.init,
           slideChange: this.slideChange
         }
-      },
-      isAutoplayRunning: true
+      }
     }
   },
   methods: {
@@ -101,10 +101,6 @@ export default {
       this.images.forEach(image => { URL.revokeObjectURL(image.url) })
       this.images = []
       this.init()
-    },
-    toggleAutoplay () {
-      this.isAutoplayRunning ? this.swiper.autoplay.stop() : this.swiper.autoplay.start()
-      this.isAutoplayRunning = !this.isAutoplayRunning
     }
   }
 }
