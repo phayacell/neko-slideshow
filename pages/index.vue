@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <div class="main">
-      <div class="swiper-container">
+      <div v-swiper:swiper="swiperOption">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="image in images" :key="image.url" :style="slideStyle(image)"></div>
         </div>
@@ -12,11 +12,11 @@
     </div>
     <div class="footer">
       <div class="tools">
-        <button type="button" class="button" @click="swiper.autoplay.start()" v-show="swiper && !swiper.autoplay.running">
+        <button type="button" class="button" @click="toggleAutoplay()" v-show="!isAutoplayRunning">
           <i class="fa fa-play fa-fw"></i>
           Start
         </button>
-        <button type="button" class="button" @click="swiper.autoplay.stop()" v-show="swiper && swiper.autoplay.running">
+        <button type="button" class="button" @click="toggleAutoplay()" v-show="isAutoplayRunning">
           <i class="fa fa-stop fa-fw"></i>
           Stop
         </button>
@@ -34,22 +34,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-import Swiper from 'swiper'
-
 export default {
-  mounted () {
-    this.swiper = this.createSwiper()
-  },
   data () {
     return {
-      swiper: null,
-      images: []
-    }
-  },
-  methods: {
-    createSwiper () {
-      return new Swiper('.swiper-container', {
+      images: [],
+      swiperOption: {
         spaceBetween: 30,
         effect: 'fade',
         fadeEffect: {
@@ -57,7 +46,6 @@ export default {
         },
         preloadImages: false,
         lazy: true,
-        observer: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -73,11 +61,14 @@ export default {
           init: this.init,
           slideChange: this.slideChange
         }
-      })
-    },
+      },
+      isAutoplayRunning: true
+    }
+  },
+  methods: {
     addImages (count) {
       for (let index = 0; index < count; index++) {
-        axios.head('http://thecatapi.com/api/images/get?' + Math.random())
+        this.$axios.head('http://thecatapi.com/api/images/get?' + Math.random())
           .then(response => {
             if (response.status === 200) {
               this.images.push({url: response.request.responseURL})
@@ -106,8 +97,11 @@ export default {
     },
     refresh () {
       this.images = []
-      this.swiper.destroy()
-      this.swiper = this.createSwiper()
+      this.init()
+    },
+    toggleAutoplay () {
+      this.isAutoplayRunning ? this.swiper.autoplay.stop() : this.swiper.autoplay.start()
+      this.isAutoplayRunning = !this.isAutoplayRunning
     }
   }
 }

@@ -2,6 +2,13 @@
   "name": "neko-slideshow",
   "version": "1.0.0",
   "author": "hayato-yamashita <h-yamashita@tes.co.jp>",
+  "description": "ネコ画像を延々スライドショーするサービス",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:hayato-yamashita/neko-slideshow.git"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -11,10 +18,10 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "axios": "^0.17.1",
-    "font-awesome": "^4.7.0",
+    "@nuxtjs/axios": "^4.5.0",
+    "@nuxtjs/font-awesome": "^1.0.3",
     "nuxt": "^1.0.0-rc11",
-    "swiper": "^4.0.7"
+    "vue-awesome-swiper": "^3.0.6"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

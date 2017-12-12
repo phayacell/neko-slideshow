@@ -15,18 +15,12 @@ module.exports = {
     ]
   },
   /*
-  ** Customize the progress bar color
-  */
-  loading: {
-    color: '#3B8070'
-  },
-  /*
   ** Build configuration
   */
   build: {
-    /*
-    ** Run ESLint on save
-    */
+    /**
+     * Run ESLint on save
+     */
     extend (config, ctx) {
       if (ctx.dev && ctx.isClient) {
         config.module.rules.push({
@@ -36,14 +30,16 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    },
-    vendor: [
-      'axios',
-      'swiper'
-    ]
+    }
   },
+  plugins: [
+    { src: '~/plugins/swiper', ssr: false }
+  ],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/font-awesome'
+  ],
   css: [
-    'font-awesome/css/font-awesome.min.css',
     'swiper/dist/css/swiper.min.css'
   ]
 }
