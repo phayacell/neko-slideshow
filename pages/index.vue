@@ -27,7 +27,7 @@
       </div>
       <div>
         <i class="fa fa-heart-o"></i>
-        Powered by <a href="http://thecatapi.com" target="_blank">The Cat API</a>
+        Powered by <a href="https://thecatapi.com" target="_blank">The Cat API</a>
       </div>
     </div>
   </section>
@@ -68,7 +68,7 @@ export default {
   methods: {
     addImages (count) {
       for (let index = 0; index < count; index++) {
-        this.$axios.head('http://thecatapi.com/api/images/get?' + Math.random())
+        this.$axios.head('https://thecatapi.com/api/images/get?' + Math.random())
           .then(response => {
             if (response.status === 200) {
               this.images.push({url: response.request.responseURL})
