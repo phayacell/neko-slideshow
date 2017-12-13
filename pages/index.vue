@@ -209,15 +209,7 @@ a:hover, .button:hover {
   background-size: contain;
 }
 
-.button:hover .refresh {
-  animation: fa-spin 2s infinite linear;
-}
-
 @media screen and (max-width:425px) {
-  .main {
-    height: calc(100vh - 2rem);
-  }
-
   .footer {
     height: 2rem;
     line-height: 2rem;

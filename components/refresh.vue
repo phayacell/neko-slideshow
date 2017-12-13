@@ -13,3 +13,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.button:hover .refresh {
+  animation: fa-spin 2s infinite linear;
+}
+</style>
