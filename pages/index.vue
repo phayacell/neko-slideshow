@@ -154,11 +154,8 @@ a:hover, .button:hover {
   flex-direction: column;
 }
 
-.main, .footer {
-  display: block;
-}
-
 .main {
+  height: calc(100vh - 3rem);
   padding: 0;
 }
 
@@ -171,7 +168,7 @@ a:hover, .button:hover {
 
 .swiper-container {
   width: 100vw;
-  height: calc(100vh - 3rem);
+  height: 100%;
 }
 
 .swiper-slide {
@@ -182,5 +179,16 @@ a:hover, .button:hover {
 
 .button:hover .refresh {
   animation: fa-spin 2s infinite linear;
+}
+
+@media screen and (max-width:425px) {
+  .main {
+    height: calc(100vh - 2rem);
+  }
+
+  .footer {
+    line-height: 2rem;
+    font-size: 12px;
+  }
 }
 </style>
