@@ -37,9 +37,13 @@ module.exports = {
   ],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/font-awesome'
+    '@nuxtjs/font-awesome',
+    '@nuxtjs/google-analytics'
   ],
   css: [
     'swiper/dist/css/swiper.min.css'
-  ]
+  ],
+  'google-analytics': {
+    id: 'UA-111203407-1'
+  }
 }
