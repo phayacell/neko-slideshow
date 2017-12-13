@@ -184,9 +184,17 @@ a:hover, .button:hover {
   width: 100vw;
   height: 3rem;
   line-height: 3rem;
-  opacity: 0.3;
 }
 .header:hover, .footer:hover {
+  opacity: 1;
+}
+
+.header .button,
+.footer .button {
+  opacity: 0.3;
+}
+.header .button:hover,
+.footer .button:hover {
   opacity: 1;
 }
 
