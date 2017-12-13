@@ -155,19 +155,29 @@ a:hover, .button:hover {
 }
 
 .main {
-  height: calc(100vh - 3rem);
+  width: 100vw;
+  height: 100vh;
   padding: 0;
 }
 
 .footer {
   padding: 0 1rem;
-  line-height: 3rem;
   display: flex;
   justify-content: space-between;
+
+  position: absolute;
+  bottom: 0;
+  line-height: 3rem;
+  width: 100vw;
+  z-index: 1;
+  opacity: 0.3;
+}
+.footer:hover {
+  opacity: 1;
 }
 
 .swiper-container {
-  width: 100vw;
+  width: 100%;
   height: 100%;
 }
 
