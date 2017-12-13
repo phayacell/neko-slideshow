@@ -1,5 +1,10 @@
 <template>
   <section class="container">
+    <div class="header">
+      <a class="button" role="button" href="https://github.com/hayato-yamashita/neko-slideshow" target="_blank">
+        <i class="fa fa-github fa-2x"></i>
+      </a>
+    </div>
     <div class="main">
       <div v-swiper:swiper="swiperOption">
         <div class="swiper-wrapper">
@@ -160,19 +165,28 @@ a:hover, .button:hover {
   padding: 0;
 }
 
+.header {
+  display: flex;
+  justify-content: flex-end;
+  top: 0;
+}
+
 .footer {
-  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
-
-  position: absolute;
   bottom: 0;
-  line-height: 3rem;
+}
+
+.header, .footer {
+  padding: 0 1rem;
+  position: absolute;
+  z-index: 100;
   width: 100vw;
-  z-index: 1;
+  height: 3rem;
+  line-height: 3rem;
   opacity: 0.3;
 }
-.footer:hover {
+.header:hover, .footer:hover {
   opacity: 1;
 }
 
@@ -197,6 +211,7 @@ a:hover, .button:hover {
   }
 
   .footer {
+    height: 2rem;
     line-height: 2rem;
     font-size: 12px;
   }
