@@ -22,7 +22,7 @@
       </div>
       <div>
         <i class="fa fa-heart-o"></i>
-        Powered by <a href="https://thecatapi.com" target="_blank">The Cat API</a>
+        Powered by <a href="https://cataas.com" target="_blank">Cataas</a>
       </div>
     </div>
   </section>
@@ -72,7 +72,10 @@ export default {
   methods: {
     addImages (count) {
       for (let index = 0; index < count; index++) {
-        this.$axios.get('https://thecatapi.com/api/images/get?' + Math.random(), {responseType: 'blob'})
+        this.$axios.get('https://cataas.com/cat', {
+          responseType: 'blob',
+          params: { random: Math.random() }
+        })
           .then(response => {
             if (response.status === 200 && response.data.size > 0) {
               this.images.push({
